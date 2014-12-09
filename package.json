@@ -9,7 +9,8 @@
     "sqlite3": "^3.0.4",
     "tungus": "0.0.4"
   },
+  "js-flags": "--harmony",
   "scripts": {
-    "start": "~/Downloads/node-webkit-v0.11.2-osx-x64/node-webkit.app/Contents/MacOS/node-webkit ."
+    "start": "~/Downloads/node-webkit-v0.11.2-osx-x64/node-webkit.app/Contents/MacOS/node-webkit --harmony ."
   }
 }
