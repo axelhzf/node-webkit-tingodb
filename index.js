@@ -1,6 +1,9 @@
 var co = require("co");
 var assert = require('assert');
 var Promise = require("bluebird");
+var mkdirp = Promise.promisify(require("mkdirp"));
+var fs = require("mz/fs");
+var path = require("path");
 
 require("tungus");
 var mongoose = Promise.promisifyAll(require("mongoose"));
@@ -23,8 +26,13 @@ var gameSchema = Schema({
 var Game = createAsyncModel('Game', gameSchema);
 
 co(function* () {
-  var db = "tingodb://" + __dirname + "/db";
-  yield mongoose.connectAsync(db);
+  var db = path.join(__dirname, "/db");
+  var dbExists = yield fs.exists(db);
+  if (!dbExists) {
+    yield mkdirp(db);
+  }
+
+  yield mongoose.connectAsync("tingodb://" + db);
 
   var nintendo64 = yield Console.createAsync({
     name: 'Nintendo 64',
@@ -39,12 +47,11 @@ co(function* () {
     consoles: [nintendo64]
   });
 
-
   console.log(nintendo64);
   console.log(zelda);
 
 }).catch(function (err) {
-  console.err(err.stack);
+  console.log("Error", err.stack);
 });
 
 
