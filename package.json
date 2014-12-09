@@ -1,0 +1,15 @@
+{
+  "name": "tingodb",
+  "version": "1.0.0",
+  "main": "index.html",
+  "dependencies": {
+    "bluebird": "^2.3.11",
+    "co": "^4.0.1",
+    "mongoose": "^3.8.20",
+    "sqlite3": "^3.0.4",
+    "tungus": "0.0.4"
+  },
+  "scripts": {
+    "start": "~/Downloads/node-webkit-v0.11.2-osx-x64/node-webkit.app/Contents/MacOS/node-webkit ."
+  }
+}
